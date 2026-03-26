@@ -1,0 +1,19 @@
+import Link from "next/link";
+
+type PageHeaderProps = {
+  title: string;
+  description: string;
+};
+
+export function PageHeader({ title, description }: PageHeaderProps) {
+  return (
+    <section className="section card">
+      <p className="eyebrow sectionEyebrow">Portfolio Section</p>
+      <h1 className="innerPageTitle">{title}</h1>
+      <p className="mutedText">{description}</p>
+      <p className="sectionAction">
+        <Link href="/">Back to Home</Link>
+      </p>
+    </section>
+  );
+}

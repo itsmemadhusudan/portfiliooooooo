@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   title: "Madhusudan Timalsina | Backend Developer",
   description:
     "Static portfolio of Madhusudan Timalsina, Backend Developer specializing in Laravel, Node.js, Nest.js, Python, React, and Next.js.",
+  icons: {
+    icon: "/profile/fav.png",
+    shortcut: "/profile/fav.png",
+    apple: "/profile/fav.png",
+  },
   openGraph: {
     title: "Madhusudan Timalsina | Backend Developer",
     description:

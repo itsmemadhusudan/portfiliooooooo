@@ -9,34 +9,93 @@ export type PortfolioData = {
   name: string;
   designation: string;
   tagline: string;
+  summary: string;
   about: string[];
+  education: {
+    degree: string;
+    institution: string;
+    duration: string;
+  }[];
   skills: {
     backend: string[];
     frontend: string[];
     related: string[];
+    soft: string[];
   };
   projects: Project[];
+  experiences: {
+    role: string;
+    duration: string;
+    points: string[];
+  }[];
+  achievements: string[];
   contact: {
+    phone: string;
     email: string;
     linkedin: string;
     github: string;
   };
+  metrics: {
+    label: string;
+    value: string;
+  }[];
+  strengths: {
+    title: string;
+    description: string;
+  }[];
 };
 
 export const portfolioData: PortfolioData = {
   name: "Madhusudan Timalsina",
-  designation: "Backend Developer",
+  designation: "Developer",
   tagline:
     "I build reliable backend systems and scalable APIs while collaborating across full-stack teams to deliver user-focused products.",
+  summary:
+    "Detail-oriented BCIS student and developer with a strong interest in building web and mobile products that solve real problems through practical, user-focused technology.",
   about: [
     "Backend-focused developer with hands-on experience building practical systems for education, commerce, and service platforms.",
     "Skilled in designing API-driven features, implementing business logic, and creating maintainable solutions that support real user outcomes.",
     "Comfortable working across frontend and backend when needed, with strong focus on clean architecture, performance, and delivery.",
   ],
+  education: [
+    {
+      degree: "Bachelor in Computer Information System",
+      institution: "Apex College",
+      duration: "2020 - 2026",
+    },
+    {
+      degree: "Secondary Level",
+      institution: "Advance Academy",
+      duration: "2015 - 2017",
+    },
+  ],
   skills: {
     backend: ["Laravel", "Node.js", "Nest.js", "Python", "Express.js", "REST APIs"],
-    frontend: ["React", "Next.js"],
-    related: ["PostgreSQL", "MySQL", "MongoDB", "Git", "GitHub", "Docker"],
+    frontend: ["React", "Next.js", "Flutter", "React Native", "HTML", "CSS"],
+    related: [
+      "Web Design",
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "SQLite",
+      "Git",
+      "GitHub",
+      "Docker",
+      "Backend Tech",
+      "Frontend Coding",
+      "Database",
+      "Database Administration",
+      "AI Chatbot Manual Training",
+    ],
+    soft: [
+      "Design Thinking",
+      "Problem-Solving",
+      "Project Management Tools",
+      "Strong Communication",
+      "Team Collaboration",
+      "Leadership",
+      "Computer Literacy",
+    ],
   },
   projects: [
     {
@@ -64,7 +123,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       name: "Yfasma",
-      stack: "E-commerce Platform",
+      stack: "Laravel + Web",
       description:
         "A premium clothing marketplace with custom order options and designer preference selection.",
       highlights: [
@@ -73,10 +132,101 @@ export const portfolioData: PortfolioData = {
         "Allows customers to choose their preferred designer for custom orders.",
       ],
     },
+    {
+      name: "Thrift Books",
+      stack: "Web + Database",
+      description:
+        "A college project for buying and selling second-hand books with dynamic frontend and backend support.",
+      highlights: [
+        "Focused on database administration and website design.",
+        "Enabled listing and discovery for second-hand books.",
+        "Implemented both frontend and backend features in one flow.",
+      ],
+    },
+    {
+      name: "Gym App",
+      stack: "Flutter + SQLite",
+      description:
+        "A personal fitness tracker app to monitor daily activities and maintain progress records.",
+      highlights: [
+        "Built using Flutter for frontend experience.",
+        "Used SQLite for local data persistence.",
+        "Designed for practical personal use and habit tracking.",
+      ],
+    },
+  ],
+  experiences: [
+    {
+      role: "Thrift Books (College Project)",
+      duration: "July - September 2023",
+      points: [
+        "Worked on database administration and website design.",
+        "Built features for buying and selling second-hand books.",
+        "Contributed to dynamic frontend and backend development.",
+      ],
+    },
+    {
+      role: "Yfasma",
+      duration: "May - July",
+      points: [
+        "Handled database administration and website design tasks.",
+        "Built a clothing platform for affordable designer wear.",
+        "Learned practical Laravel website development.",
+      ],
+    },
+    {
+      role: "Swaad Sathi",
+      duration: "May - July",
+      points: [
+        "Worked on frontend design and development for a food app.",
+        "Connected tenants with home kitchens through a cloud kitchen model.",
+        "Gained experience in Flutter, React Native, and AI chatbot training.",
+      ],
+    },
+    {
+      role: "Gym App",
+      duration: "September - October",
+      points: [
+        "Built the frontend with Flutter and stored data using SQLite.",
+        "Created the app as a personal activity tracking tool.",
+      ],
+    },
+  ],
+  achievements: [
+    "Maintained strong grades in key IT courses.",
+    "Helped organize tech events and workshops in college.",
+    "Self-learned web development and databases through continuous study.",
+    "Served as class representative of 42 students.",
+    "Mentored a full section in SMART and received Best Team recognition twice.",
+    "Contributed to SMART program judging activities.",
+    "Participated as a judge in the SMART program.",
   ],
   contact: {
-    email: "madhusudan@example.com",
-    linkedin: "https://linkedin.com/in/madhusudan",
+    phone: "+977-9861333037",
+    email: "madhusudantimalsina607@gmail.com",
+    linkedin: "https://www.linkedin.com/in/madhusudan-timalsina-75a910183/",
     github: "https://github.com/madhusudan",
   },
+  metrics: [
+    { value: "23+", label: "Completed Projects" },
+    { value: "6+", label: "Core Technologies" },
+    { value: "100%", label: "Client-Focused Delivery" },
+  ],
+  strengths: [
+    {
+      title: "API-First Approach",
+      description:
+        "I design clear and maintainable backend APIs that support fast frontend and mobile development.",
+    },
+    {
+      title: "Scalable System Logic",
+      description:
+        "I build reliable business logic for real-world workflows such as exams, orders, and custom processes.",
+    },
+    {
+      title: "Practical Delivery",
+      description:
+        "I prioritize performance, readability, and stable releases to ship useful products quickly.",
+    },
+  ],
 };

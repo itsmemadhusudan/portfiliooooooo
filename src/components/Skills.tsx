@@ -12,6 +12,7 @@ export function Skills({ skills }: SkillsProps) {
         <SkillGroup title="Backend" items={skills.backend} />
         <SkillGroup title="Frontend" items={skills.frontend} />
         <SkillGroup title="Related" items={skills.related} />
+        <SkillGroup title="Professional Skills" items={skills.soft} />
       </div>
     </section>
   );
