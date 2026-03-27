@@ -13,7 +13,11 @@ export default function ContactPage() {
           title="Contact"
           description="Let's connect for backend roles, freelance projects, and collaborations."
         />
-        <Contact contact={portfolioData.contact} />
+        <Contact
+          contact={portfolioData.contact}
+          availability={portfolioData.availability}
+          services={portfolioData.services}
+        />
       </main>
       <Footer name={portfolioData.name} />
     </div>

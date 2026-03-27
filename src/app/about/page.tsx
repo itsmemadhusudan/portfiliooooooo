@@ -18,6 +18,7 @@ export default function AboutPage() {
           about={portfolioData.about}
           education={portfolioData.education}
           achievements={portfolioData.achievements}
+          focusAreas={portfolioData.focusAreas}
         />
       </main>
       <Footer name={portfolioData.name} />

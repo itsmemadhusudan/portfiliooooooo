@@ -5,11 +5,12 @@ type AboutProps = {
   about: PortfolioData["about"];
   education: PortfolioData["education"];
   achievements: PortfolioData["achievements"];
+  focusAreas: PortfolioData["focusAreas"];
 };
 
-export function About({ summary, about, education, achievements }: AboutProps) {
+export function About({ summary, about, education, achievements, focusAreas }: AboutProps) {
   return (
-    <section className="section card" id="about">
+    <section className="section card animate-up" id="about">
       <h3>About</h3>
       <p className="summaryText">{summary}</p>
       <div className="stackText">
@@ -19,7 +20,7 @@ export function About({ summary, about, education, achievements }: AboutProps) {
       </div>
 
       <div className="twoColGrid">
-        <article className="miniCard">
+        <article className="miniCard animate-up delay-1">
           <h4>Education</h4>
           <ul className="simpleList">
             {education.map((item) => (
@@ -30,7 +31,16 @@ export function About({ summary, about, education, achievements }: AboutProps) {
           </ul>
         </article>
 
-        <article className="miniCard">
+        <article className="miniCard animate-up delay-2">
+          <h4>Focus Areas</h4>
+          <ul className="simpleList">
+            {focusAreas.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </article>
+
+        <article className="miniCard animate-up delay-3">
           <h4>Achievements</h4>
           <ul className="simpleList">
             {achievements.map((achievement) => (

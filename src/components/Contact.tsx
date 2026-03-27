@@ -3,14 +3,16 @@ import { ContactForm } from "@/components/ContactForm";
 
 type ContactProps = {
   contact: PortfolioData["contact"];
+  availability: PortfolioData["availability"];
+  services: PortfolioData["services"];
 };
 
-export function Contact({ contact }: ContactProps) {
+export function Contact({ contact, availability, services }: ContactProps) {
   return (
-    <section className="section contactSection" id="contact">
-      <article className="card">
+    <section className="section contactSection animate-up" id="contact">
+      <article className="card animate-up delay-1">
         <h3>Contact Information</h3>
-        <p>Open to backend opportunities, collaborations, and freelance projects.</p>
+        <p>{availability}</p>
         <ul className="contactList">
           <li>
             <span>Phone:</span>{" "}
@@ -31,6 +33,9 @@ export function Contact({ contact }: ContactProps) {
             </a>
           </li>
           <li>
+            <span>Location:</span> {contact.location}
+          </li>
+          <li>
             <span>GitHub:</span>{" "}
             <a href={contact.github} target="_blank" rel="noreferrer">
               {contact.github.replace("https://", "")}
@@ -39,7 +44,16 @@ export function Contact({ contact }: ContactProps) {
         </ul>
       </article>
 
-      <article className="card">
+      <article className="card animate-up delay-2">
+        <h3>Services I Can Help With</h3>
+        <ul className="simpleList">
+          {services.map((service) => (
+            <li key={service}>{service}</li>
+          ))}
+        </ul>
+      </article>
+
+      <article className="card animate-up delay-3">
         <h3>Send a Message</h3>
         <p className="mutedText">Your message will be delivered to timmadh@gmail.com.</p>
         <ContactForm />

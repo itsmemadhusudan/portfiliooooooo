@@ -2,17 +2,19 @@ import { PortfolioData } from "@/data/portfolio";
 
 type SkillsProps = {
   skills: PortfolioData["skills"];
+  currentlyLearning: PortfolioData["currentlyLearning"];
 };
 
-export function Skills({ skills }: SkillsProps) {
+export function Skills({ skills, currentlyLearning }: SkillsProps) {
   return (
-    <section className="section card" id="skills">
+    <section className="section card animate-up" id="skills">
       <h3>Skills</h3>
       <div className="skillGroups">
         <SkillGroup title="Backend" items={skills.backend} />
         <SkillGroup title="Frontend" items={skills.frontend} />
         <SkillGroup title="Related" items={skills.related} />
         <SkillGroup title="Professional Skills" items={skills.soft} />
+        <SkillGroup title="Currently Learning" items={currentlyLearning} />
       </div>
     </section>
   );

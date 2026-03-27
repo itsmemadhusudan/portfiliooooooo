@@ -8,9 +8,9 @@ type HeroProps = {
 
 export function Hero({ data }: HeroProps) {
   return (
-    <section className="section heroCard" id="home">
+    <section className="section heroCard animate-up" id="home">
       <div className="heroContent">
-        <div>
+        <div className="animate-up delay-1">
           <p className="eyebrow">Backend Developer Portfolio</p>
           <h1>{data.name}</h1>
           <h2>{data.designation}</h2>
@@ -25,12 +25,13 @@ export function Hero({ data }: HeroProps) {
           </div>
         </div>
 
-        <div className="profileMock" aria-hidden="true">
+        <div className="profileMock animate-float delay-2" aria-hidden="true">
           <div className="profileImageWrap">
             <Image
               src="/profile/138767859-removebg-preview.png"
               alt="Madhusudan Timalsina profile"
               fill
+              sizes="(max-width: 760px) 90vw, 260px"
               priority
               className="profileImage"
             />
@@ -39,7 +40,7 @@ export function Hero({ data }: HeroProps) {
         </div>
       </div>
 
-      <div className="metricRow">
+      <div className="metricRow animate-up delay-2">
         {data.metrics.map((metric) => (
           <div key={metric.label} className="metricItem">
             <p className="metricValue">{metric.value}</p>

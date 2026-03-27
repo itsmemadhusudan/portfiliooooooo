@@ -16,6 +16,7 @@ export default function ProjectsPage() {
         <Projects
           projects={portfolioData.projects}
           experiences={portfolioData.experiences}
+          totalProjects="23+"
         />
       </main>
       <Footer name={portfolioData.name} />

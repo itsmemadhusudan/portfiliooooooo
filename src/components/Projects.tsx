@@ -3,15 +3,19 @@ import { PortfolioData, Project } from "@/data/portfolio";
 type ProjectsProps = {
   projects: Project[];
   experiences?: PortfolioData["experiences"];
+  totalProjects?: string;
 };
 
-export function Projects({ projects, experiences = [] }: ProjectsProps) {
+export function Projects({ projects, experiences = [], totalProjects = "23+" }: ProjectsProps) {
   return (
-    <section className="section" id="projects">
+    <section className="section animate-up" id="projects">
       <h3>Projects</h3>
+      <p className="mutedText">
+        I have worked on <strong>{totalProjects}</strong> projects across web, backend, and mobile applications.
+      </p>
       <div className="projectGrid">
         {projects.map((project) => (
-          <article className="projectCard" key={project.name}>
+          <article className="projectCard animate-up" key={project.name}>
             <p className="stack">{project.stack}</p>
             <h4>{project.name}</h4>
             <p>{project.description}</p>

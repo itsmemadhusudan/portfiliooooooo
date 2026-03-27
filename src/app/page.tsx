@@ -19,11 +19,16 @@ export default function Home() {
           about={portfolioData.about}
           education={portfolioData.education}
           achievements={portfolioData.achievements.slice(0, 3)}
+          focusAreas={portfolioData.focusAreas}
         />
         <WhyChoose strengths={portfolioData.strengths} />
-        <Skills skills={portfolioData.skills} />
-        <Projects projects={portfolioData.projects.slice(0, 3)} />
-        <Contact contact={portfolioData.contact} />
+        <Skills skills={portfolioData.skills} currentlyLearning={portfolioData.currentlyLearning} />
+        <Projects projects={portfolioData.projects.slice(0, 3)} totalProjects="23+" />
+        <Contact
+          contact={portfolioData.contact}
+          availability={portfolioData.availability}
+          services={portfolioData.services}
+        />
       </main>
       <Footer name={portfolioData.name} />
     </div>

@@ -13,7 +13,10 @@ export default function SkillsPage() {
           title="Skills & Tools"
           description="Technical and professional skills I use to deliver real projects."
         />
-        <Skills skills={portfolioData.skills} />
+        <Skills
+          skills={portfolioData.skills}
+          currentlyLearning={portfolioData.currentlyLearning}
+        />
       </main>
       <Footer name={portfolioData.name} />
     </div>

@@ -29,12 +29,23 @@ export type PortfolioData = {
     points: string[];
   }[];
   achievements: string[];
+  focusAreas: string[];
+  currentlyLearning: string[];
+  currentWork: {
+    company: string;
+    role: string;
+    status: string;
+    highlights: string[];
+  };
   contact: {
     phone: string;
     email: string;
     linkedin: string;
     github: string;
+    location: string;
   };
+  availability: string;
+  services: string[];
   metrics: {
     label: string;
     value: string;
@@ -157,6 +168,15 @@ export const portfolioData: PortfolioData = {
   ],
   experiences: [
     {
+      role: "Smartsarks",
+      duration: "Current",
+      points: [
+        "Working as a developer on real-world application tasks.",
+        "Supporting feature implementation and overall product improvement.",
+        "Growing practical industry experience through active team collaboration.",
+      ],
+    },
+    {
       role: "Thrift Books (College Project)",
       duration: "July - September 2023",
       points: [
@@ -198,15 +218,44 @@ export const portfolioData: PortfolioData = {
     "Self-learned web development and databases through continuous study.",
     "Served as class representative of 42 students.",
     "Mentored a full section in SMART and received Best Team recognition twice.",
-    "Contributed to SMART program judging activities.",
-    "Participated as a judge in the SMART program.",
+    "Worked as a judge in the SMART program.",
   ],
+  focusAreas: [
+    "Backend API architecture and business logic",
+    "Database-oriented problem solving",
+    "Education and commerce platform workflows",
+    "Cross-functional teamwork and delivery",
+  ],
+  currentlyLearning: [
+    "Advanced Laravel patterns",
+    "Scalable Nest.js architecture",
+    "System design fundamentals",
+    "AI-powered assistant workflows",
+  ],
+  currentWork: {
+    company: "Smartsarks",
+    role: "Developer",
+    status: "Currently Working",
+    highlights: [
+      "Contributing to practical software development tasks and feature implementation.",
+      "Collaborating with team members on web-focused solutions and delivery timelines.",
+      "Strengthening hands-on experience in backend and full-stack workflows.",
+    ],
+  },
   contact: {
     phone: "+977-9861333037",
     email: "madhusudantimalsina607@gmail.com",
     linkedin: "https://www.linkedin.com/in/madhusudan-timalsina-75a910183/",
     github: "https://github.com/madhusudan",
+    location: "Kathmandu, Nepal",
   },
+  availability: "Available for internships, junior developer roles, freelance work, and collaborative projects.",
+  services: [
+    "Backend API development",
+    "Full-stack college project builds",
+    "Database design and integration",
+    "Web and mobile feature implementation",
+  ],
   metrics: [
     { value: "23+", label: "Completed Projects" },
     { value: "6+", label: "Core Technologies" },
