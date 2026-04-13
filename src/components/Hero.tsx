@@ -8,7 +8,7 @@ type HeroProps = {
 
 export function Hero({ data }: HeroProps) {
   return (
-    <section className="section heroCard animate-up" id="home">
+    <section className="section heroCard heroCard--shine animate-up" id="home">
       <div className="heroContent">
         <div className="animate-up delay-1">
           <p className="eyebrow">Backend Developer Portfolio</p>

@@ -2,7 +2,9 @@ import { About } from "@/components/About";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
+import { HomeSnapshot } from "@/components/HomeSnapshot";
 import { Projects } from "@/components/Projects";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Skills } from "@/components/Skills";
 import { WhyChoose } from "@/components/WhyChoose";
@@ -10,25 +12,50 @@ import { portfolioData } from "@/data/portfolio";
 
 export default function Home() {
   return (
-    <div className="pageWrap">
-      <main className="container">
-        <SiteHeader />
+    <div className="pageWrap homePage">
+      <div className="homeMotionLayer" aria-hidden="true">
+        <span className="homeOrb homeOrb--1" />
+        <span className="homeOrb homeOrb--2" />
+        <span className="homeOrb homeOrb--3" />
+        <span className="homeOrb homeOrb--4" />
+      </div>
+      <main className="container homePageContent">
+        <SiteHeader className="siteHeader--home" />
         <Hero data={portfolioData} />
-        <About
-          summary={portfolioData.summary}
-          about={portfolioData.about}
-          education={portfolioData.education}
-          achievements={portfolioData.achievements.slice(0, 3)}
-          focusAreas={portfolioData.focusAreas}
-        />
-        <WhyChoose strengths={portfolioData.strengths} />
-        <Skills skills={portfolioData.skills} currentlyLearning={portfolioData.currentlyLearning} />
-        <Projects projects={portfolioData.projects.slice(0, 3)} totalProjects="23+" />
-        <Contact
-          contact={portfolioData.contact}
-          availability={portfolioData.availability}
-          services={portfolioData.services}
-        />
+        <ScrollReveal delayClass="reveal-stagger-1">
+          <HomeSnapshot
+            currentWork={portfolioData.currentWork}
+            contact={portfolioData.contact}
+            education={portfolioData.education}
+            languages={portfolioData.languages}
+            interests={portfolioData.interests}
+          />
+        </ScrollReveal>
+        <ScrollReveal delayClass="reveal-stagger-2">
+          <About
+            summary={portfolioData.summary}
+            about={portfolioData.about}
+            education={portfolioData.education}
+            achievements={portfolioData.achievements}
+            focusAreas={portfolioData.focusAreas}
+          />
+        </ScrollReveal>
+        <ScrollReveal delayClass="reveal-stagger-3">
+          <WhyChoose strengths={portfolioData.strengths} />
+        </ScrollReveal>
+        <ScrollReveal delayClass="reveal-stagger-4">
+          <Skills skills={portfolioData.skills} currentlyLearning={portfolioData.currentlyLearning} />
+        </ScrollReveal>
+        <ScrollReveal delayClass="reveal-stagger-5">
+          <Projects projects={portfolioData.projects.slice(0, 3)} totalProjects="23+" />
+        </ScrollReveal>
+        <ScrollReveal delayClass="reveal-stagger-6">
+          <Contact
+            contact={portfolioData.contact}
+            availability={portfolioData.availability}
+            services={portfolioData.services}
+          />
+        </ScrollReveal>
       </main>
       <Footer name={portfolioData.name} />
     </div>

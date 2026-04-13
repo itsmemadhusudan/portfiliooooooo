@@ -1,0 +1,23 @@
+/** Uppercase A–Z words for the word-puzzle game */
+export const wordPuzzleWords: string[] = [
+  "LARAVEL",
+  "NODEJS",
+  "NESTJS",
+  "PYTHON",
+  "TYPESCRIPT",
+  "POSTGRES",
+  "MONGODB",
+  "REDIS",
+  "DOCKER",
+  "KUBERNETES",
+  "GRAPHQL",
+  "RESTAPI",
+  "WEBHOOK",
+  "BACKEND",
+  "DATABASE",
+  "PIPELINE",
+  "REFACTOR",
+  "DEPLOY",
+  "SECURITY",
+  "TESTING",
+];

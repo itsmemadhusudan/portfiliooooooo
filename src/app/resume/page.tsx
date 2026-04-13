@@ -1,5 +1,6 @@
 import { Footer } from "@/components/Footer";
 import { PageHeader } from "@/components/PageHeader";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { SiteHeader } from "@/components/SiteHeader";
 import { portfolioData } from "@/data/portfolio";
 
@@ -8,14 +9,17 @@ export default function ResumePage() {
     <div className="pageWrap">
       <main className="container">
         <SiteHeader />
-        <section className="section resumeShell">
-          <PageHeader
-            title="Resume"
-            description="One-page CV of Madhusudan Timalsina."
-          />
-        </section>
+        <ScrollReveal delayClass="reveal-stagger-1">
+          <section className="section resumeShell">
+            <PageHeader
+              title="Resume"
+              description="One-page CV of Madhusudan Timalsina."
+            />
+          </section>
+        </ScrollReveal>
 
-        <section className="section card resumePage resumeSheet animate-up">
+        <ScrollReveal delayClass="reveal-stagger-2">
+        <section className="section card resumePage resumeSheet">
           <header className="resumeHeader">
             <div>
               <h2 className="resumeName">{portfolioData.name}</h2>
@@ -109,6 +113,7 @@ export default function ResumePage() {
             </ul>
           </section>
         </section>
+        </ScrollReveal>
       </main>
       <Footer name={portfolioData.name} />
     </div>

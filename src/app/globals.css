@@ -36,6 +36,152 @@ a {
   flex-direction: column;
 }
 
+.homePage {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.homeMotionLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.homePageContent {
+  position: relative;
+  z-index: 1;
+}
+
+.homeOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(52px);
+  opacity: 0.42;
+  will-change: transform;
+}
+
+.homeOrb--1 {
+  width: min(320px, 45vw);
+  height: min(320px, 45vw);
+  top: 8%;
+  left: -8%;
+  background: radial-gradient(circle at 30% 30%, rgba(29, 95, 102, 0.55), transparent 70%);
+  animation: orbDriftA 22s ease-in-out infinite;
+}
+
+.homeOrb--2 {
+  width: min(260px, 38vw);
+  height: min(260px, 38vw);
+  top: 22%;
+  right: -6%;
+  background: radial-gradient(circle at 60% 40%, rgba(240, 183, 38, 0.35), transparent 72%);
+  animation: orbDriftB 26s ease-in-out infinite;
+}
+
+.homeOrb--3 {
+  width: min(380px, 52vw);
+  height: min(380px, 52vw);
+  bottom: 12%;
+  left: 15%;
+  background: radial-gradient(circle at 50% 50%, rgba(18, 72, 78, 0.22), transparent 68%);
+  animation: orbDriftC 30s ease-in-out infinite;
+}
+
+.homeOrb--4 {
+  width: min(220px, 35vw);
+  height: min(220px, 35vw);
+  bottom: 28%;
+  right: 10%;
+  background: radial-gradient(circle at 40% 60%, rgba(127, 180, 188, 0.4), transparent 75%);
+  animation: orbDriftD 18s ease-in-out infinite;
+}
+
+@keyframes orbDriftA {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(48px, 36px) scale(1.06);
+  }
+
+  66% {
+    transform: translate(22px, -28px) scale(0.97);
+  }
+}
+
+@keyframes orbDriftB {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  40% {
+    transform: translate(-40px, 52px) scale(1.08);
+  }
+
+  70% {
+    transform: translate(-65px, -18px) scale(0.95);
+  }
+}
+
+@keyframes orbDriftC {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(-36px, -44px) rotate(6deg);
+  }
+}
+
+@keyframes orbDriftD {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  45% {
+    transform: translate(32px, -40px);
+  }
+
+  80% {
+    transform: translate(-28px, 24px);
+  }
+}
+
+.homePage .reasonCard {
+  opacity: 1;
+  animation: reasonCardBob 7.5s ease-in-out infinite;
+}
+
+.homePage .reasonCard:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.homePage .reasonCard:nth-child(2) {
+  animation-delay: 0.9s;
+}
+
+.homePage .reasonCard:nth-child(3) {
+  animation-delay: 1.8s;
+}
+
+@keyframes reasonCardBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
 .container {
   width: 100%;
   max-width: 1500px;
@@ -55,12 +201,18 @@ a {
   border: 1px solid var(--card-border);
   border-radius: 1.1rem;
   padding: 1.4rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(18, 72, 78, 0.08);
+  transform: translateY(-5px);
+  border-color: #b5d0d0;
+  box-shadow:
+    0 8px 16px rgba(18, 72, 78, 0.06),
+    0 20px 48px rgba(18, 72, 78, 0.1);
 }
 
 .heroCard {
@@ -69,6 +221,177 @@ a {
   border-radius: 1.4rem;
   padding: 1.2rem 1.2rem 1rem;
   box-shadow: 0 15px 40px rgba(21, 74, 81, 0.25);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.heroCard:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 50px rgba(21, 74, 81, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.heroCard--shine::after {
+  content: "";
+  position: absolute;
+  inset: -60% -40%;
+  background: linear-gradient(
+    105deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 58%
+  );
+  animation: heroShine 9s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.siteHeader--home {
+  animation: headerSlideDown 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+.siteHeader--page {
+  animation: headerSlideDown 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+.pageHeaderCard .innerPageTitle {
+  animation: titleSlideIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.08s backwards;
+}
+
+.pageHeaderCard .sectionEyebrow {
+  animation: fadeUp 0.55s ease 0s backwards;
+}
+
+.pageHeaderCard .mutedText {
+  animation: fadeUp 0.55s ease 0.12s backwards;
+}
+
+.pageHeaderCard .sectionAction {
+  animation: fadeUp 0.55s ease 0.2s backwards;
+}
+
+@keyframes titleSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.sectionAction a {
+  position: relative;
+  display: inline-block;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.sectionAction a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal-deep), var(--mint));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s ease;
+}
+
+.sectionAction a:hover {
+  transform: translateX(2px);
+}
+
+.sectionAction a:hover::after {
+  transform: scaleX(1);
+}
+
+@keyframes footerRise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-revealed {
+  animation: scrollRevealIn 0.78s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.scroll-reveal.reveal-stagger-0.is-revealed {
+  animation-delay: 0s;
+}
+
+.scroll-reveal.reveal-stagger-1.is-revealed {
+  animation-delay: 0.04s;
+}
+
+.scroll-reveal.reveal-stagger-2.is-revealed {
+  animation-delay: 0.1s;
+}
+
+.scroll-reveal.reveal-stagger-3.is-revealed {
+  animation-delay: 0.16s;
+}
+
+.scroll-reveal.reveal-stagger-4.is-revealed {
+  animation-delay: 0.22s;
+}
+
+.scroll-reveal.reveal-stagger-5.is-revealed {
+  animation-delay: 0.28s;
+}
+
+.scroll-reveal.reveal-stagger-6.is-revealed {
+  animation-delay: 0.34s;
+}
+
+@keyframes headerSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroShine {
+  0%,
+  100% {
+    transform: translateX(-35%) rotate(12deg);
+  }
+
+  50% {
+    transform: translateX(35%) rotate(12deg);
+  }
+}
+
+@keyframes scrollRevealIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .siteHeader {
@@ -187,7 +510,7 @@ h4 {
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.02);
 }
 
 .btnPrimary {
@@ -213,6 +536,19 @@ h4 {
   align-items: center;
   text-align: center;
   gap: 0.8rem;
+  /* Avoid transform on hover — conflicts with .animate-float keyframes */
+  transition:
+    border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.profileMock:hover {
+  border-color: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 12px 36px rgba(0, 0, 0, 0.18),
+    0 0 0 1px rgba(240, 183, 38, 0.22);
 }
 
 .profileImageWrap {
@@ -220,15 +556,34 @@ h4 {
   height: 260px;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   background: rgba(255, 255, 255, 0.06);
   border-radius: 1rem;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+  will-change: transform;
+}
+
+.profileImageWrap:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 20px 44px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 0 32px rgba(240, 183, 38, 0.2);
 }
 
 .profileImage {
   object-fit: contain;
   object-position: bottom center;
   padding: 0.3rem;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.profileImageWrap:hover .profileImage {
+  transform: scale(1.06);
 }
 
 .avatarCircle {
@@ -249,8 +604,44 @@ h4 {
   padding: 0.8rem;
 }
 
+.metricRow .metricItem:nth-child(1) {
+  animation: metricPop 0.55s ease 0.35s backwards;
+}
+
+.metricRow .metricItem:nth-child(2) {
+  animation: metricPop 0.55s ease 0.45s backwards;
+}
+
+.metricRow .metricItem:nth-child(3) {
+  animation: metricPop 0.55s ease 0.55s backwards;
+}
+
+@keyframes metricPop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .metricItem {
   text-align: center;
+  border-radius: 0.65rem;
+  padding: 0.4rem 0.35rem;
+  transition:
+    background 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.metricItem:hover {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
 }
 
 .metricValue {
@@ -275,6 +666,57 @@ h4 {
   font-weight: 500;
 }
 
+.homeSnapshot .snapshotLead {
+  margin-top: 0.15rem;
+  margin-bottom: 0;
+  max-width: 65ch;
+}
+
+.snapshotGrid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.85rem;
+}
+
+.snapshotItem h4 {
+  color: var(--teal-deep);
+  font-size: 1rem;
+  margin-top: 0;
+}
+
+.snapshotStrong {
+  margin: 0.35rem 0 0;
+  font-weight: 600;
+  color: #1e4043;
+}
+
+.snapshotMeta {
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+}
+
+.snapshotBullets {
+  margin-top: 0.5rem;
+}
+
+.snapshotResumeLink {
+  margin: 0.65rem 0 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.snapshotResumeLink a {
+  color: var(--teal-soft);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.snapshotResumeLink a:hover {
+  color: var(--teal-deep);
+  text-decoration: underline;
+}
+
 .twoColGrid {
   margin-top: 1rem;
   display: grid;
@@ -287,6 +729,18 @@ h4 {
   border-radius: 0.9rem;
   padding: 1rem;
   background: #fbfdfd;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+}
+
+.miniCard:hover {
+  transform: translateY(-6px);
+  border-color: #9ec8c8;
+  box-shadow:
+    0 6px 12px rgba(19, 63, 67, 0.05),
+    0 18px 40px rgba(19, 63, 67, 0.09);
 }
 
 .simpleList {
@@ -405,6 +859,18 @@ h4 {
   border-radius: 1.1rem;
   border: 1px solid var(--card-border);
   padding: 1.2rem;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+}
+
+.whyChoose:hover {
+  transform: translateY(-4px);
+  border-color: #b5d0d0;
+  box-shadow:
+    0 6px 14px rgba(18, 72, 78, 0.05),
+    0 18px 44px rgba(18, 72, 78, 0.08);
 }
 
 .reasonGrid {
@@ -418,6 +884,15 @@ h4 {
   border-radius: 0.9rem;
   padding: 1rem;
   background: #fbfdfd;
+  /* Hover uses shadow/border only so it does not fight reasonCardBob transform */
+  transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease;
+}
+
+.reasonCard:hover {
+  border-color: #9bc4c4;
+  box-shadow:
+    0 6px 14px rgba(19, 63, 67, 0.06),
+    0 16px 36px rgba(19, 63, 67, 0.09);
 }
 
 .reasonCard p {
@@ -427,6 +902,22 @@ h4 {
 .skillGroups {
   display: grid;
   gap: 1rem;
+}
+
+.skillGroups > div {
+  border-radius: 0.85rem;
+  padding: 0.5rem 0.45rem;
+  margin: -0.5rem -0.45rem;
+  transition:
+    background 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skillGroups > div:hover {
+  background: rgba(29, 95, 102, 0.04);
+  box-shadow: 0 10px 28px rgba(18, 72, 78, 0.06);
+  transform: translateY(-3px);
 }
 
 .groupTitle {
@@ -448,6 +939,18 @@ h4 {
   border-radius: 9999px;
   padding: 0.3rem 0.7rem;
   font-size: 0.88rem;
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.chip:hover {
+  transform: translateY(-3px) scale(1.03);
+  background: #dff0f0;
+  border-color: #7fb0b5;
+  box-shadow: 0 6px 16px rgba(18, 72, 78, 0.1);
 }
 
 .projectGrid {
@@ -462,12 +965,18 @@ h4 {
   border-radius: 1rem;
   padding: 1.1rem;
   min-height: 100%;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .projectCard:hover {
-  transform: translateY(-2px);
-  border-color: #abc8c8;
+  transform: translateY(-8px) scale(1.015);
+  border-color: #8ab8b8;
+  box-shadow:
+    0 8px 16px rgba(19, 63, 67, 0.05),
+    0 24px 52px rgba(19, 63, 67, 0.11);
 }
 
 .stack {
@@ -566,12 +1075,152 @@ h4 {
   font-weight: 500;
 }
 
+.contactFormWrap {
+  display: grid;
+  gap: 1rem;
+}
+
+.maintenanceBanner {
+  border: 1px solid #c9e0e0;
+  background: linear-gradient(135deg, #f0faf9, #f8fcfc);
+  border-radius: 0.85rem;
+  padding: 0.9rem 1rem;
+  color: #1e4043;
+}
+
+.maintenanceBanner strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #12484e;
+}
+
+.maintenanceBanner p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.contactForm--disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.contactForm--disabled .field input,
+.contactForm--disabled .field textarea {
+  cursor: not-allowed;
+  background: #eef4f4;
+}
+
+.contactAltBtn {
+  justify-self: start;
+  animation: fadeUp 0.5s ease 0.1s backwards;
+}
+
+.contactModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  background: rgba(17, 47, 51, 0.45);
+  backdrop-filter: blur(4px);
+  animation: fadeUp 0.25s ease forwards;
+}
+
+.contactModal {
+  width: min(420px, 100%);
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.25rem 1.35rem;
+  box-shadow: 0 20px 50px rgba(15, 50, 53, 0.2);
+  border: 1px solid #d6e8e8;
+}
+
+.contactModalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.contactModalHeader h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #12484e;
+}
+
+.contactModalClose {
+  border: none;
+  background: #eef6f6;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #1e4043;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.contactModalClose:hover {
+  background: #ddeeee;
+  transform: scale(1.05);
+}
+
+.contactModalClose:focus-visible {
+  outline: 2px solid var(--teal-deep);
+  outline-offset: 2px;
+}
+
+.contactModalLead {
+  margin: 0 0 0.75rem;
+  line-height: 1.55;
+  color: #294f53;
+}
+
+.contactModalPhone {
+  margin: 0 0 1rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.contactModalPhone a {
+  color: var(--teal-deep);
+  text-decoration: none;
+}
+
+.contactModalPhone a:hover {
+  text-decoration: underline;
+}
+
+.contactModalActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.contactModal .btnGhost.contactModalViber {
+  border: 1px solid #b8d4d4;
+  color: #1e4043;
+  background: #f8fcfc;
+}
+
+.contactModalHint {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
 .footer {
   margin-top: auto;
   border-top: 1px solid #cddede;
   padding: 1rem 1.3rem 1.2rem;
   color: #53787b;
   text-align: center;
+  animation: footerRise 0.7s ease 0.15s backwards;
 }
 
 .animate-up {
@@ -616,14 +1265,61 @@ h4 {
 @media (prefers-reduced-motion: reduce) {
   .animate-up,
   .animate-float,
+  .heroCard--shine::after,
+  .siteHeader--home,
+  .siteHeader--page,
+  .pageHeaderCard .innerPageTitle,
+  .pageHeaderCard .sectionEyebrow,
+  .pageHeaderCard .mutedText,
+  .pageHeaderCard .sectionAction,
+  .footer,
+  .scroll-reveal,
+  .metricRow .metricItem,
+  .metricItem,
+  .homeOrb,
+  .homePage .reasonCard,
   .btn,
   .card,
+  .heroCard,
   .projectCard,
+  .miniCard,
+  .chip,
+  .profileMock,
+  .profileImageWrap,
+  .profileImage,
+  .skillGroups > div,
+  .whyChoose,
   .navLinks a {
     animation: none !important;
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
+  }
+
+  .card:hover,
+  .heroCard:hover,
+  .projectCard:hover,
+  .miniCard:hover,
+  .chip:hover,
+  .profileMock:hover,
+  .profileImageWrap:hover,
+  .metricItem:hover,
+  .reasonCard:hover,
+  .skillGroups > div:hover,
+  .whyChoose:hover {
+    box-shadow: none !important;
+  }
+
+  .profileImageWrap {
+    will-change: auto;
+  }
+
+  .homeMotionLayer {
+    display: none;
+  }
+
+  .scroll-reveal {
+    will-change: auto;
   }
 }
 

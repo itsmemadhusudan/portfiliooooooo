@@ -7,7 +7,7 @@ type PageHeaderProps = {
 
 export function PageHeader({ title, description }: PageHeaderProps) {
   return (
-    <section className="section card">
+    <section className="section card pageHeaderCard">
       <p className="eyebrow sectionEyebrow">Portfolio Section</p>
       <h1 className="innerPageTitle">{title}</h1>
       <p className="mutedText">{description}</p>

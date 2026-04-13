@@ -54,11 +54,15 @@ export type PortfolioData = {
     title: string;
     description: string;
   }[];
+  /** Spoken / professional languages */
+  languages: string[];
+  /** Topics and product areas you gravitate toward */
+  interests: string[];
 };
 
 export const portfolioData: PortfolioData = {
   name: "Madhusudan Timalsina",
-  designation: "Developer",
+  designation: "Backend & Full-Stack Developer",
   tagline:
     "I build reliable backend systems and scalable APIs while collaborating across full-stack teams to deliver user-focused products.",
   summary:
@@ -67,6 +71,8 @@ export const portfolioData: PortfolioData = {
     "Backend-focused developer with hands-on experience building practical systems for education, commerce, and service platforms.",
     "Skilled in designing API-driven features, implementing business logic, and creating maintainable solutions that support real user outcomes.",
     "Comfortable working across frontend and backend when needed, with strong focus on clean architecture, performance, and delivery.",
+    "Recent work includes a Management Information System for online learning and exams (attempt limits, pass/fail rules, and automatic certificates) and marketplace-style products such as Yfasma (fashion) and Thrift Books (second-hand books), where database design and full-stack delivery mattered end to end.",
+    "Mobile experience spans Flutter and React Native—for example a cloud-kitchen style flow connecting home kitchens with customers (Swaad Sathi) and tools for personal fitness tracking (Gym App with SQLite).",
   ],
   education: [
     {
@@ -97,6 +103,8 @@ export const portfolioData: PortfolioData = {
       "Database",
       "Database Administration",
       "AI Chatbot Manual Training",
+      "API integration (web & mobile)",
+      "Authentication & session flows",
     ],
     soft: [
       "Design Thinking",
@@ -219,6 +227,8 @@ export const portfolioData: PortfolioData = {
     "Served as class representative of 42 students.",
     "Mentored a full section in SMART and received Best Team recognition twice.",
     "Worked as a judge in the SMART program.",
+    "Shipped end-to-end features across Laravel, Node, and mobile stacks for real clients and college projects.",
+    "Contributed to production-style delivery while studying BCIS at Apex College.",
   ],
   focusAreas: [
     "Backend API architecture and business logic",
@@ -246,15 +256,18 @@ export const portfolioData: PortfolioData = {
     phone: "+977-9861333037",
     email: "madhusudantimalsina607@gmail.com",
     linkedin: "https://www.linkedin.com/in/madhusudan-timalsina-75a910183/",
-    github: "https://github.com/madhusudan",
+    github: "https://github.com/itsmemadhusudan",
     location: "Kathmandu, Nepal",
   },
-  availability: "Available for internships, junior developer roles, freelance work, and collaborative projects.",
+  availability:
+    "Open to internships, junior developer roles, freelance work, and team projects—remote-friendly from Kathmandu or hybrid when it fits.",
   services: [
-    "Backend API development",
-    "Full-stack college project builds",
-    "Database design and integration",
-    "Web and mobile feature implementation",
+    "Backend API development (Laravel, Node.js, Nest.js)",
+    "Full-stack college and startup-style project builds",
+    "Database design, administration, and integration",
+    "Web and mobile feature implementation (React, Next.js, Flutter, React Native)",
+    "Exam, certificate, and policy-driven workflows (educational platforms)",
+    "AI chatbot training and integration support where manual tuning is required",
   ],
   metrics: [
     { value: "23+", label: "Completed Projects" },
@@ -263,19 +276,27 @@ export const portfolioData: PortfolioData = {
   ],
   strengths: [
     {
-      title: "API-First Approach",
+      title: "API-first, product-minded backend",
       description:
-        "I design clear and maintainable backend APIs that support fast frontend and mobile development.",
+        "I focus on clean REST-style APIs, sensible data models, and endpoints that are easy for web and mobile teams to integrate.",
     },
     {
-      title: "Scalable System Logic",
+      title: "Real systems, not demo code",
       description:
-        "I build reliable business logic for real-world workflows such as exams, orders, and custom processes.",
+        "From exam rules and certificates to orders and cloud-kitchen flows, I implement business logic that matches how users actually behave.",
     },
     {
-      title: "Practical Delivery",
+      title: "Reliable delivery & teamwork",
       description:
-        "I prioritize performance, readability, and stable releases to ship useful products quickly.",
+        "I communicate clearly, iterate with feedback, and ship readable, maintainable code—currently growing this further as a developer at Smartsarks.",
     },
+  ],
+  languages: ["English", "Nepali"],
+  interests: [
+    "EdTech and exam / certification workflows",
+    "Marketplace and e-commerce backends",
+    "Food-tech and service platforms (ordering, cloud-kitchen models)",
+    "Clean APIs for web and mobile clients",
+    "Mentoring and peer learning (SMART, class rep)",
   ],
 };

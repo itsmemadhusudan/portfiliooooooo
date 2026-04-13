@@ -55,8 +55,10 @@ export function Contact({ contact, availability, services }: ContactProps) {
 
       <article className="card animate-up delay-3">
         <h3>Send a Message</h3>
-        <p className="mutedText">Your message will be delivered to timmadh@gmail.com.</p>
-        <ContactForm />
+        <p className="mutedText">
+          Online form is under maintenance — use Viber, WhatsApp, or call the number shown.
+        </p>
+        <ContactForm phoneDisplay={contact.phone} />
       </article>
     </section>
   );

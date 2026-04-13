@@ -1,107 +1,124 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 
-type FormState = {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
+type ContactFormProps = {
+  phoneDisplay: string;
 };
 
-const initialState: FormState = {
-  name: "",
-  email: "",
-  subject: "",
-  message: "",
-};
+function digitsForLinks(phone: string) {
+  return phone.replace(/\D/g, "");
+}
 
-export function ContactForm() {
-  const [form, setForm] = useState<FormState>(initialState);
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [error, setError] = useState("");
+export function ContactForm({ phoneDisplay }: ContactFormProps) {
+  const modalTitleId = useId();
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setStatus("loading");
-    setError("");
+  const waDigits = digitsForLinks(phoneDisplay);
+  const whatsappUrl = `https://wa.me/${waDigits}`;
+  const viberUrl = `viber://chat?number=${encodeURIComponent(waDigits)}`;
+  const telHref = `tel:${phoneDisplay.replace(/[^\d+]/g, "")}`;
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+  const openModal = useCallback(() => setModalOpen(true), []);
+  const closeModal = useCallback(() => setModalOpen(false), []);
 
-      const payload = (await res.json()) as { success: boolean; error?: string };
-      if (!res.ok || !payload.success) {
-        setStatus("error");
-        setError(payload.error ?? "Could not send message.");
-        return;
-      }
-
-      setStatus("success");
-      setForm(initialState);
-    } catch {
-      setStatus("error");
-      setError("Could not send message.");
-    }
-  }
+  useEffect(() => {
+    if (!modalOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeModal();
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [modalOpen, closeModal]);
 
   return (
-    <form className="contactForm" onSubmit={onSubmit}>
-      <div className="fieldGrid">
-        <label className="field">
-          <span>Name</span>
-          <input
-            required
-            value={form.name}
-            onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
-            placeholder="Your full name"
-          />
-        </label>
+    <div className="contactFormWrap">
+      <div className="maintenanceBanner" role="status">
+        <strong>Form under maintenance</strong>
+        <p>
+          The contact form is temporarily unavailable. Please reach me by phone,{" "}
+          <strong>Viber</strong>, or <strong>WhatsApp</strong> using the number below.
+        </p>
+      </div>
 
+      <div className="contactForm contactForm--disabled" aria-hidden="true">
+        <div className="fieldGrid">
+          <label className="field">
+            <span>Name</span>
+            <input disabled placeholder="Unavailable during maintenance" />
+          </label>
+          <label className="field">
+            <span>Email</span>
+            <input disabled type="email" placeholder="Unavailable during maintenance" />
+          </label>
+        </div>
         <label className="field">
-          <span>Email</span>
-          <input
-            required
-            type="email"
-            value={form.email}
-            onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
-            placeholder="your@email.com"
-          />
+          <span>Subject</span>
+          <input disabled placeholder="Unavailable during maintenance" />
+        </label>
+        <label className="field">
+          <span>Message</span>
+          <textarea disabled rows={4} placeholder="Unavailable during maintenance" />
         </label>
       </div>
 
-      <label className="field">
-        <span>Subject</span>
-        <input
-          required
-          value={form.subject}
-          onChange={(e) => setForm((prev) => ({ ...prev, subject: e.target.value }))}
-          placeholder="Project discussion"
-        />
-      </label>
-
-      <label className="field">
-        <span>Message</span>
-        <textarea
-          required
-          rows={5}
-          value={form.message}
-          onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
-          placeholder="Write your message..."
-        />
-      </label>
-
-      <button className="btn btnPrimary sendBtn" disabled={status === "loading"} type="submit">
-        {status === "loading" ? "Sending..." : "Send Message"}
+      <button type="button" className="btn btnPrimary sendBtn contactAltBtn" onClick={openModal}>
+        Contact me on Viber or WhatsApp
       </button>
 
-      {status === "success" && (
-        <p className="successText">Message sent successfully. I will get back to you soon.</p>
+      {modalOpen && (
+        <div
+          className="contactModalOverlay"
+          role="presentation"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeModal();
+          }}
+        >
+          <div
+            className="contactModal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={modalTitleId}
+          >
+            <div className="contactModalHeader">
+              <h4 id={modalTitleId}>Get in touch</h4>
+              <button
+                ref={closeRef}
+                type="button"
+                className="contactModalClose"
+                onClick={closeModal}
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </div>
+            <p className="contactModalLead">
+              Please contact me using this number on <strong>Viber</strong> or{" "}
+              <strong>WhatsApp</strong>, or call directly.
+            </p>
+            <p className="contactModalPhone">
+              <a href={telHref}>{phoneDisplay}</a>
+            </p>
+            <div className="contactModalActions">
+              <a className="btn btnPrimary" href={whatsappUrl} target="_blank" rel="noreferrer">
+                Open WhatsApp
+              </a>
+              <a className="btn btnGhost contactModalViber" href={viberUrl}>
+                Open Viber
+              </a>
+            </div>
+            <p className="contactModalHint mutedText">
+              If a link does not open, save the number and message me from your Viber or WhatsApp app.
+            </p>
+          </div>
+        </div>
       )}
-      {status === "error" && <p className="errorText">{error}</p>}
-    </form>
+    </div>
   );
 }
