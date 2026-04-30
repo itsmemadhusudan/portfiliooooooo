@@ -24,7 +24,7 @@ export function About({ summary, about, education, achievements, focusAreas }: A
           <h4>Education</h4>
           <ul className="simpleList">
             {education.map((item) => (
-              <li key={item.degree}>
+              <li key={item.id}>
                 <strong>{item.degree}</strong> - {item.institution} ({item.duration})
               </li>
             ))}

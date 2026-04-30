@@ -15,7 +15,7 @@ export function Projects({ projects, experiences = [], totalProjects = "23+" }: 
       </p>
       <div className="projectGrid">
         {projects.map((project) => (
-          <article className="projectCard animate-up" key={project.name}>
+          <article className="projectCard animate-up" key={project.id}>
             <p className="stack">{project.stack}</p>
             <h4>{project.name}</h4>
             <p>{project.description}</p>
@@ -33,7 +33,7 @@ export function Projects({ projects, experiences = [], totalProjects = "23+" }: 
           <h3>Experience Highlights</h3>
           <div className="experienceGrid">
             {experiences.map((experience) => (
-              <div key={experience.role} className="miniCard">
+              <div key={experience.id} className="miniCard">
                 <h4>{experience.role}</h4>
                 <p className="mutedText">{experience.duration}</p>
                 <ul className="simpleList">

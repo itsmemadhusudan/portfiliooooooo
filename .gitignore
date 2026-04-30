@@ -30,6 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# local SQLite (run db:migrate + db:seed)
+/data/
+
 # env files — keep secrets in .env.local (not committed)
 .env
 .env*.local

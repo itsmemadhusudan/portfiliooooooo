@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { getPortfolioData } from "@/lib/portfolio-queries";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,22 +13,37 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Madhusudan Timalsina | Backend Developer",
-  description:
-    "Static portfolio of Madhusudan Timalsina, Backend Developer specializing in Laravel, Node.js, Nest.js, Python, React, and Next.js.",
-  icons: {
-    icon: "/profile/fav.png",
-    shortcut: "/profile/fav.png",
-    apple: "/profile/fav.png",
-  },
-  openGraph: {
-    title: "Madhusudan Timalsina | Backend Developer",
-    description:
-      "Backend-focused portfolio featuring skills, projects, and contact details.",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const d = await getPortfolioData();
+    const ogTitle = d.ogTitle ?? d.siteTitle;
+    const ogDesc = d.ogDescription ?? d.siteDescription;
+    return {
+      title: d.siteTitle,
+      description: d.siteDescription,
+      icons: {
+        icon: "/profile/fav.png",
+        shortcut: "/profile/fav.png",
+        apple: "/profile/fav.png",
+      },
+      openGraph: {
+        title: ogTitle,
+        description: ogDesc,
+        type: "website",
+      },
+    };
+  } catch {
+    return {
+      title: "Portfolio",
+      description: "Run db:migrate and db:seed to load content.",
+      icons: {
+        icon: "/profile/fav.png",
+        shortcut: "/profile/fav.png",
+        apple: "/profile/fav.png",
+      },
+    };
+  }
+}
 
 export default function RootLayout({
   children,

@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio (Next.js)
 
-## Getting Started
+Personal portfolio site with **SQLite-backed content** and an **admin area** at `/admin`.
 
-First, run the development server:
+## Setup
+
+```bash
+npm install
+cp .env.example .env.local
+```
+
+Optional: run **`npm run seed:admin`** once to create `.env.local` with admin ID, password, and a random session secret (skips if `.env.local` already exists).
+
+Default admin (used when env vars are **not** set, dev only for session secret):
+
+- **ID:** `madhusudantimalsina`
+- **Password:** set in app defaults (override with `ADMIN_USERNAME` / `ADMIN_PASSWORD` in `.env.local`)
+
+In **production**, always set `ADMIN_SESSION_SECRET` (16+ characters) and strong `ADMIN_PASSWORD` in the environment.
+
+Initialize the database and seed default content (from `src/db/seed-source.ts`):
+
+```bash
+npm run db:migrate
+npm run db:seed
+```
+
+Start the app:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Public site: [http://localhost:3000](http://localhost:3000)
+- Admin: [http://localhost:3000/admin/login](http://localhost:3000/admin/login)
+- Gallery (public): [http://localhost:3000/gallery](http://localhost:3000/gallery)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+From **Admin** you can manage the full public experience: profile & SEO (tab title, Open Graph, hero image and copy), **main navigation** links, **inner page titles/descriptions** (About, Skills, Projects, …), plus all portfolio content (projects, skills, gallery uploads, etc.).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `npm run db:migrate` | Apply SQL migrations in `drizzle/` |
+| `npm run db:seed` | Replace all content with seed snapshot (destructive) |
+| `npm run db:generate` | Regenerate migrations after editing `src/db/schema.ts` |
+| `npm run db:studio` | Open Drizzle Studio against the SQLite file |
+
+## Backups
+
+Back up both:
+
+1. The SQLite file (`data/portfolio.db` and WAL/SHM if present).
+2. Uploaded gallery files under `public/uploads/gallery/`.
+
+## Deployment and SQLite
+
+File-based SQLite works well on a **single long-lived Node host** (VPS, Docker, `next start` on one machine).
+
+Typical **serverless** hosts use an ephemeral filesystem and many instances, so a **writable local SQLite file is not a good fit**. For that model, consider [Turso](https://turso.tech/) (libSQL) or another hosted database, and point Drizzle at that driver instead of `better-sqlite3`.
+
+## Stack
+
+- [Next.js](https://nextjs.org/) 16 (App Router)
+- [Drizzle ORM](https://orm.drizzle.team/) + [better-sqlite3](https://github.com/WiseLibs/better-sqlite3)
+- [Tailwind CSS](https://tailwindcss.com/) v4
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js Documentation](https://nextjs.org/docs)

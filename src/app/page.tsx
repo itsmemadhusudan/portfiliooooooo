@@ -8,9 +8,13 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Skills } from "@/components/Skills";
 import { WhyChoose } from "@/components/WhyChoose";
-import { portfolioData } from "@/data/portfolio";
+import { getPortfolioData } from "@/lib/portfolio-queries";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const portfolioData = await getPortfolioData();
+
   return (
     <div className="pageWrap homePage">
       <div className="homeMotionLayer" aria-hidden="true">
@@ -20,7 +24,7 @@ export default function Home() {
         <span className="homeOrb homeOrb--4" />
       </div>
       <main className="container homePageContent">
-        <SiteHeader className="siteHeader--home" />
+        <SiteHeader className="siteHeader--home" navLinks={portfolioData.navLinks} />
         <Hero data={portfolioData} />
         <ScrollReveal delayClass="reveal-stagger-1">
           <HomeSnapshot
@@ -47,7 +51,10 @@ export default function Home() {
           <Skills skills={portfolioData.skills} currentlyLearning={portfolioData.currentlyLearning} />
         </ScrollReveal>
         <ScrollReveal delayClass="reveal-stagger-5">
-          <Projects projects={portfolioData.projects.slice(0, 3)} totalProjects="23+" />
+          <Projects
+            projects={portfolioData.projects.slice(0, 3)}
+            totalProjects={portfolioData.totalProjectsLabel}
+          />
         </ScrollReveal>
         <ScrollReveal delayClass="reveal-stagger-6">
           <Contact

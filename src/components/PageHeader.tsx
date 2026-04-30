@@ -3,12 +3,13 @@ import Link from "next/link";
 type PageHeaderProps = {
   title: string;
   description: string;
+  eyebrow?: string;
 };
 
-export function PageHeader({ title, description }: PageHeaderProps) {
+export function PageHeader({ title, description, eyebrow = "Portfolio Section" }: PageHeaderProps) {
   return (
     <section className="section card pageHeaderCard">
-      <p className="eyebrow sectionEyebrow">Portfolio Section</p>
+      <p className="eyebrow sectionEyebrow">{eyebrow}</p>
       <h1 className="innerPageTitle">{title}</h1>
       <p className="mutedText">{description}</p>
       <p className="sectionAction">
